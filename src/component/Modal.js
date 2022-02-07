@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import {Typography,TextField} from '@mui/material';
+import { Typography, TextField } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -21,16 +21,29 @@ const style = {
 
 
 export default function BasicModal(props) {
- const {open, handleClose , handleOpen} = props;
+  const { open, handleClose, handleOpen, array, setArray, index, } = props;
+  console.warn(array)
 
- console.warn(open)
- console.log(handleClose)
- console.warn(handleOpen)
-  
+
+  const handleSubmit = (index) => {
+
+    const Edit = [...array];
+    findIndex(element, index)
+    setArray(Edit);
+    console.warn(Edit)
+
+  }
+
+  const inputUser = (index) => {
+    const Value = [...array]
+    array.Indexof(array.index == index)
+    setArray(Value)
+  }
+
 
   return (
     <>
-      <Button onClick={handleOpen}>Edit</Button>
+      <Button onClick={handleOpen} handleSubmit={handleSubmit}>Edit</Button>
       <Modal
         open={open}
         popup={handleClose}
@@ -38,20 +51,20 @@ export default function BasicModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} container >
-        <Typography> <Box marginLeft ={47} marginTop={-3.5}>
-        
-        <Button onClick={handleClose} ><CloseIcon /></Button>
-        </Box>
-        </Typography>
+          <Typography> <Box marginLeft={47} marginTop={-3.5}>
+
+            <Button onClick={handleClose} ><CloseIcon /></Button>
+          </Box>
+          </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h2" m={2} ml={15}>
             Edit Input Field
           </Typography>
           <Typography m={2} ml={12}>
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-            
+            <TextField id="outlined-basic" label="Edit The Value" variant="outlined" onChange={(e) => setArray(e.target.value)} />
+
           </Typography>
-          <Typography  ml={15} mt={-4}>
-          <Button varient="outlined" sx={{p: 2 , m : 3 , width : 100}} type='submit'>Save</Button>
+          <Typography ml={15} mt={-4}>
+            <Button varient="outlined" sx={{ p: 2, m: 3, width: 100 }} type='submit'  >Save</Button>
           </Typography>
         </Box>
       </Modal>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Typography } from '@mui/material';
 import Add from './component/Add';
-import {Modelpopup} from './component/Modelpopup';
+import { Modelpopup } from './component/Modelpopup';
 import BasicModal from './component/Modal'
+
 function App() {
 
   const [getdata, setGetData] = useState();
@@ -10,23 +11,32 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(getdata)
-    const data = { getdata }
-    setArray((a) => [data, ...a]);
+    if (!getdata) {
+      alert("Task to be added should not be empty!")
+    } else {
+      const data = getdata 
 
-    setGetData("")
-    console.warn(array)
+      setArray((a) => [data, ...a]);
+
+      setGetData("")
+
+    }
+
+    
   }
+ 
 
 
   return (
     <>
-    
+
       <Typography>
         <Add handleSubmit={handleSubmit} getdata={getdata} array={array} setGetData={setGetData} />
-          <Modelpopup getdata={getdata} setArray={setArray} array={array} />
+        <Modelpopup setGetData={setGetData} setArray={setArray} array={array} />
+        
+
       </Typography>
-      
+
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button,  CardContent, Card } from '@mui/material'
+import { Typography, Button, CardContent, Card } from '@mui/material'
 import BasicModal from './Modal';
 
 
@@ -9,7 +9,7 @@ export function Modelpopup(props) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { array, setArray} = props;
+    const { array, setArray } = props;
 
     const deleteButton = (index) => {
 
@@ -18,40 +18,41 @@ export function Modelpopup(props) {
         setArray(List);
         console.warn(List)
     }
-    
-   
-    
+
+ 
+
+
     return (<>
 
 
 
         <Card >
             <CardContent>
-            
-                {array.map((a, index) =>
-                    <Typography sx={{ fontSize: 14, m: 1 }} color="text.secondary" key={index}>
-
-                        <Typography justify="space-between">
-                            <Typography justify="center" display="flex" justifyContent='space-evenly '>
-                            {a.getdata} 
-                        <Button onClick={() => deleteButton(index)} >Delete</Button>
-                            
 
 
-                        <BasicModal open={open} handleOpen={handleOpen} handleClose={handleClose}/>
-                        
-                        
-                        
+                {
+                    array.map((a, index) =>
+                        <Typography sx={{ fontSize: 14, m: 1 }} color="text.secondary" key={index}>
+
+                            <Typography justify="space-between">
+                                <Typography justify="center" display="flex" justifyContent='space-evenly '>
+                                    {a} {index}
+                                    <Button onClick={() => deleteButton(index)} >Delete</Button>
+                                    <BasicModal open={open} handleOpen={handleOpen} handleClose={handleClose} array={array}  index={index} />
+                                     
+                                      
+
+
+                                </Typography>
+
+                            </Typography>
+
                         </Typography>
-                       
-                        </Typography>
-
-                    </Typography>
                     )}
-      </CardContent>
+            </CardContent>
 
         </Card>
-    
+
 
 
 
