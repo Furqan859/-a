@@ -5,7 +5,7 @@ import BasicModal from './Modal';
 
 
 export function Modelpopup(props) {
-    const { array, setArray ,updateArray} = props;
+    const { array, setArray } = props;
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -19,7 +19,7 @@ export function Modelpopup(props) {
         setArray(List);
         console.warn(List)
     }
-    const	arrayUpdate = (dd) =>{
+    const arrayUpdate = (dd) =>{
         props.setUpdateArray(dd)}
 
 

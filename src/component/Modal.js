@@ -25,9 +25,10 @@ export default function BasicModal(props) {
 
   const [value, setValue] = useState(null)
   const { open, handleClose, handleOpen, array, setArray, index, getupdateArray } = props;
-  console.warn('array', array, index,)
+
   useEffect(() => {
     setValue(array[index])
+    console.log(index)
 
   }, []);
 
