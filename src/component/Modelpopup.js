@@ -5,11 +5,12 @@ import BasicModal from './Modal';
 
 
 export function Modelpopup(props) {
+    const { array, setArray ,updateArray} = props;
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { array, setArray } = props;
 
     const deleteButton = (index) => {
 
@@ -18,11 +19,12 @@ export function Modelpopup(props) {
         setArray(List);
         console.warn(List)
     }
+    const	arrayUpdate = (dd) =>{
+        props.setUpdateArray(dd)}
 
- 
 
 
-    return (<>
+    return (
 
 
 
@@ -32,13 +34,13 @@ export function Modelpopup(props) {
 
                 {
                     array.map((a, index) =>
-                        <Typography sx={{ fontSize: 14, m: 1 }} color="text.secondary" key={index}>
+                        <Typography sx={{ fontSize: 14, m: 1 }} color="text.secondary" key={a.index}>
 
                             <Typography justify="space-between">
                                 <Typography justify="center" display="flex" justifyContent='space-evenly '>
                                     {a} {index}
                                     <Button onClick={() => deleteButton(index)} >Delete</Button>
-                                    <BasicModal open={open} handleOpen={handleOpen} handleClose={handleClose} array={array}  index={index} />
+                                    <BasicModal open={open} handleOpen={handleOpen} handleClose={handleClose} array={array}  index={index} getupdateArray={arrayUpdate}/>
                                      
                                       
 
@@ -49,6 +51,7 @@ export function Modelpopup(props) {
 
                         </Typography>
                     )}
+                    
             </CardContent>
 
         </Card>
@@ -58,7 +61,7 @@ export function Modelpopup(props) {
 
 
 
-    </>
+    
     );
 }
 

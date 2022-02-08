@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Typography, TextField } from '@mui/material';
@@ -21,9 +22,14 @@ const style = {
 
 
 export default function BasicModal(props) {
-  const { open, handleClose, handleOpen, array, setArray, index, } = props;
-  console.warn(array)
 
+  const [value, setValue] = useState(null)
+  const { open, handleClose, handleOpen, array, setArray, index, getupdateArray } = props;
+  console.warn('array', array, index,)
+  useEffect(() => {
+    setValue(array[index])
+
+  }, []);
 
   const handleSubmit = (index) => {
 
@@ -34,16 +40,19 @@ export default function BasicModal(props) {
 
   }
 
-  const inputUser = (index) => {
-    const Value = [...array]
-    array.Indexof(array.index == index)
-    setArray(Value)
+
+
+  const inputUser = () => {
+    array[index] = value;
+    getupdateArray(array)
+
   }
+
 
 
   return (
     <>
-      <Button onClick={handleOpen} handleSubmit={handleSubmit}>Edit</Button>
+      <Button onClick={handleOpen} handlesubmit={handleSubmit}>Edit</Button>
       <Modal
         open={open}
         popup={handleClose}
@@ -60,11 +69,11 @@ export default function BasicModal(props) {
             Edit Input Field
           </Typography>
           <Typography m={2} ml={12}>
-            <TextField id="outlined-basic" label="Edit The Value" variant="outlined" onChange={(e) => setArray(e.target.value)} />
+            <TextField id="outlined-basic" label="Edit The Value" variant="outlined" value={value} onChange={(e) => setValue(e.target.value)} />
 
           </Typography>
           <Typography ml={15} mt={-4}>
-            <Button varient="outlined" sx={{ p: 2, m: 3, width: 100 }} type='submit'  >Save</Button>
+            <Button varient="outlined" sx={{ p: 2, m: 3, width: 100 }} type='submit' onClick={() => inputUser()}  >Save</Button>
           </Typography>
         </Box>
       </Modal>
