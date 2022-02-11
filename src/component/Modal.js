@@ -38,6 +38,7 @@ export default function BasicModal(props) {
     findIndex(element, index)
     setArray(Edit);
     console.warn(Edit)
+    
 
   }
 
